@@ -8,7 +8,7 @@ spring:
     activate:
       on-profile: local
   datasource:
-    url: 'jdbc:mysql://localhost:3306/demo'
+    url: jdbc:mysql://${env.spring.datasource}/demo?useUnicode=yes&serverTimezone=Asia/Ho_Chi_Minh&characterEncoding=UTF-8
     username: root
     password: 123456
   jpa:
@@ -17,6 +17,11 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
     hibernate:
       ddl-auto: update
+jwt:
+  secret:
+    key: Your-key-secret
+  time:
+    expiration: 80000000
 ---
 spring:
   config:
@@ -26,20 +31,8 @@ spring:
     url: jdbc:mysql://${env.spring.datasource}/demo?useUnicode=yes&serverTimezone=Asia/Ho_Chi_Minh&characterEncoding=UTF-8
 
 env:
-  api:
-    via: K
-  local: 10.26.53.221:${server.port}
   spring:
     datasource: 127.0.0.1
-  vndid:
-    api: https://accounts-uat.vndirect.com.vn
-  crms:
-    url: https://accounts-suat.vndirect.com.vn
   host:
     ip: localhost
     scheme: http
-  testing-endpoint.enable: true
-constant:
-  zalo:
-    template-id: -9999
----
